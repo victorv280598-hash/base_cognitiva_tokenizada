@@ -1,6 +1,7 @@
 """
 ==============================================================================
 PROYECTO: Sistema Cognitivo LLM - Núcleo Aislado de Mínima Acción
+REPOSITORIO: https://github.com/victorv280598-hash/base_cognitiva_tokenizada
 ARCHIVO: consultar_github.py
 AUTOR: Victor Jose Vazquez Preciado
 LICENCIA: Todos los derechos reservados (All Rights Reserved).
@@ -18,11 +19,11 @@ import cmath
 # ==============================================================================
 # 1. PARÁMETROS AJUSTABLES DEL SISTEMA
 # ==============================================================================
-# Ruta directa (Raw) a tu base de conceptos aislados en GitHub
-URL_BASE_GITHUB = "https://raw.githubusercontent.com/victorv280598-hash/sistema-cognitivo-aislado/main/base_cognitiva_tokenizada.json"
+# Ruta directa (Raw) configurada exactamente con tu repositorio real en GitHub
+URL_BASE_GITHUB = "https://raw.githubusercontent.com/victorv280598-hash/base_cognitiva_tokenizada/main/base_cognitiva_tokenizada.json"
 
 # Umbrales metacognitivos extraídos de tu arquitectura
-UMBRAL_ENTROPIA = 0.65        # Si la duda supera este valor, se marca baja coincidencia
+UMBRAL_ENTROPIA = 0.65        # Límite máximo de duda permitido antes de marcar baja coincidencia
 H_BARRA_COMPUTACIONAL = 1.0   # Constante de escala para el cálculo de fase compleja
 PATRON_TOKENS = r'[\w-]+|[#$&\[\]]'  # Conserva palabras y tus símbolos (#, $, &, [, ])
 
@@ -41,8 +42,8 @@ def cargar_base_desde_github(url: str) -> dict:
             return json.loads(contenido_texto)
     except Exception as error:
         print(f"⚠️ Error de conexión con GitHub: {error}")
-        print("Verifica que el repositorio 'sistema-cognitivo-aislado' sea público")
-        print("y que el archivo 'base_cognitiva_tokenizada.json' exista en 'main'.")
+        print("Verifica que el repositorio sea público y que exista el archivo:")
+        print("base_cognitiva_tokenizada.json dentro de la rama 'main'.")
         return {}
 
 
@@ -129,7 +130,7 @@ def buscar_y_evaluar_accion(consulta: str, base_datos: dict) -> dict:
 # ==============================================================================
 def iniciar_motor():
     """Punto de entrada principal del programa."""
-    print("🔄 Cargando memoria aislada desde GitHub...")
+    print("🔄 Conectando con https://github.com/victorv280598-hash/base_cognitiva_tokenizada ...")
     base = cargar_base_desde_github(URL_BASE_GITHUB)
 
     if not base:
