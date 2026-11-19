@@ -1,0 +1,138 @@
+{
+  "metadatos": {
+    "proyecto": "Sistema Cognitivo LLM - Nucleo Aislado de Minima Accion",
+    "autor": "Victor Jose Vazquez Preciado",
+    "licencia": "Todos los derechos reservados (All Rights Reserved). Prohibida su modificacion sin autorizacion.",
+    "version": "1.0.0",
+    "modo_operacion": "Cero inferencia externa / Determinista",
+    "formula_nucleo": "δ ∫_{-∞}^{∞} e^{(i/ħ) S} Dx = 0",
+    "parametros_globales": {
+      "umbral_entropia": 0.65,
+      "umbral_varentropia": 0.40,
+      "h_barra_computacional": 1.0,
+      "max_tokens_sistema_1": 256
+    }
+  },
+  "conceptos_aislados": {
+    "LEY-01": {
+      "tipo": "Ley Logica",
+      "nombre": "De Morgan 1",
+      "detalle": "Negar una conjuncion es disyuncion de negaciones.",
+      "sintaxis": "[# \"De_Morgan_1\" $ley [\"-(p & q) = (-p + -q)\"];]",
+      "metricas_tokens": {
+        "cantidad_total": 14,
+        "tokens_unicos": ["#", "$", "&", "-", "=", "[", "]", "conjuncion", "de", "disyuncion", "ley-01", "morgan", "negar", "p", "q"]
+      }
+    },
+    "LEY-02": {
+      "tipo": "Ley Logica",
+      "nombre": "De Morgan 2",
+      "detalle": "Negar una disyuncion es conjuncion de negaciones.",
+      "sintaxis": "[# \"De_Morgan_2\" $ley [\"-(p + q) = (-p & -q)\"];]",
+      "metricas_tokens": {
+        "cantidad_total": 14,
+        "tokens_unicos": ["#", "$", "&", "-", "=", "[", "]", "conjuncion", "de", "disyuncion", "ley-02", "morgan", "negar", "p", "q"]
+      }
+    },
+    "LEY-10": {
+      "tipo": "Ley Logica",
+      "nombre": "Modus Ponens",
+      "detalle": "Si p implica q y se da p, se sigue q.",
+      "sintaxis": "[# \"Modus_Ponens\" $inicio [\"p -> q\"]:{& [# \"Premisa_1\" $dado [\"p\"]]; & [# \"Derivacion\" $concluye [\"q\"]];}];",
+      "metricas_tokens": {
+        "cantidad_total": 18,
+        "tokens_unicos": ["#", "$", "&", "[", "]", "concluye", "dado", "derivacion", "implica", "ley-10", "modus", "p", "ponens", "premisa", "q"]
+      }
+    },
+    "SIS-05": {
+      "tipo": "Sistema Modal",
+      "nombre": "Sistema S5",
+      "detalle": "Propiedad de R: Reflexiva, transitiva y simetrica (equivalencia).",
+      "sintaxis": "[# \"S5\" $R [\"reflexiva, transitiva y simetrica\", \"suma\", \"Opp\"];]",
+      "metricas_tokens": {
+        "cantidad_total": 15,
+        "tokens_unicos": ["#", "$", "[", "]", "equivalencia", "modal", "opp", "r", "reflexiva", "s5", "simetrica", "sis-05", "sistema", "transitiva"]
+      }
+    },
+    "SIM-01": {
+      "tipo": "Simbolo Sintaxis",
+      "nombre": "Etiqueta #",
+      "detalle": "Define un encabezado o etiqueta de bloque.",
+      "sintaxis": "# Etiqueta_Bloque",
+      "metricas_tokens": {
+        "cantidad_total": 8,
+        "tokens_unicos": ["#", "bloque", "define", "encabezado", "etiqueta", "sim-01", "simbolo"]
+      }
+    },
+    "SIM-02": {
+      "tipo": "Simbolo Sintaxis",
+      "nombre": "Aislamiento []",
+      "detalle": "Crea una capa de aislamiento (encapsulamiento). NO es un mundo posible.",
+      "sintaxis": "[ bloque_aislado ]",
+      "metricas_tokens": {
+        "cantidad_total": 11,
+        "tokens_unicos": ["[", "]", "aislado", "aislamiento", "bloque", "capa", "encapsulamiento", "sim-02", "simbolo"]
+      }
+    },
+    "SIM-03": {
+      "tipo": "Simbolo Sintaxis",
+      "nombre": "Anclaje $",
+      "detalle": "Ancla un valor absoluto inmutable.",
+      "sintaxis": "$valor_inmutable",
+      "metricas_tokens": {
+        "cantidad_total": 7,
+        "tokens_unicos": ["$", "absoluto", "ancla", "anclaje", "inmutable", "sim-03", "valor"]
+      }
+    },
+    "SIM-12": {
+      "tipo": "Simbolo Sintaxis",
+      "nombre": "Conjuncion &",
+      "detalle": "Anida variantes o crea instrucciones multicapa (las dos valen).",
+      "sintaxis": "capa_1 & capa_2",
+      "metricas_tokens": {
+        "cantidad_total": 10,
+        "tokens_unicos": ["&", "anida", "capa", "conjuncion", "instrucciones", "multicapa", "sim-12", "variantes"]
+      }
+    },
+    "LLM-001": {
+      "tipo": "Estructura Prompt",
+      "nombre": "RTCFR",
+      "detalle": "Estructurar entregables profesionales rigurosos delimitando rol, tarea, contexto, formato y restricciones.",
+      "sintaxis": "[# Rol, Tarea, Contexto, Formato, Restricciones]",
+      "metricas_tokens": {
+        "cantidad_total": 15,
+        "tokens_unicos": ["#", "[", "]", "contexto", "entregables", "formato", "llm-001", "restricciones", "rol", "rtcfr", "tarea"]
+      }
+    },
+    "LLM-002": {
+      "tipo": "Estructura Prompt",
+      "nombre": "Chain-of-Thought (CoT)",
+      "detalle": "Razonamiento paso a paso descomponiendo un problema en etapas para minimizar errores (Sistema 2).",
+      "sintaxis": "Pensar paso a paso -> Etapa 1 -> Etapa 2 -> Conclusion",
+      "metricas_tokens": {
+        "cantidad_total": 16,
+        "tokens_unicos": ["chain-of-thought", "cot", "descomponiendo", "etapas", "llm-002", "paso", "razonamiento", "sistema", "2"]
+      }
+    },
+    "LLM-021": {
+      "tipo": "Estructura Prompt",
+      "nombre": "ReAct",
+      "detalle": "Orquestador de razonamiento y accion intercalada (Pensar -> Actuar -> Observar).",
+      "sintaxis": "Thought -> Action -> Observation",
+      "metricas_tokens": {
+        "cantidad_total": 11,
+        "tokens_unicos": ["accion", "action", "llm-021", "observation", "observar", "orquestador", "pensar", "razonamiento", "react", "thought"]
+      }
+    },
+    "ARQ-01": {
+      "tipo": "Modulo Nucleo",
+      "nombre": "MonitorEntropia",
+      "detalle": "Evalua entropia (duda, umbral 0.65) y varentropia (bifurcacion logica, umbral 0.40).",
+      "sintaxis": "umbral_entropia=0.65 | umbral_varentropia=0.40",
+      "metricas_tokens": {
+        "cantidad_total": 12,
+        "tokens_unicos": ["0.40", "0.65", "arq-01", "bifurcacion", "duda", "entropia", "monitorentropia", "umbral", "varentropia"]
+      }
+    }
+  }
+}
