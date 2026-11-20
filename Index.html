@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema Cognitivo LLM — Núcleo de Mínima Acción</title>
+  <title>Base Cognitiva Tokenizada</title>
   <style>
     /* =========================================================================
-       ESTILOS LIGEROS (CSS PURO - SIN DEPENDENCIAS EXTERNAS)
+       ESTILOS MINIMALISTAS (CSS PURO - SIN DEPENDENCIAS EXTERNAS)
        ========================================================================= */
     :root {
       --bg: #0f172a;
@@ -14,9 +14,6 @@
       --text: #f8fafc;
       --muted: #94a3b8;
       --accent: #38bdf8;
-      --success: #22c55e;
-      --warning: #f59e0b;
-      --danger: #ef4444;
       --border: #334155;
     }
 
@@ -28,86 +25,63 @@
       padding: 16px;
       line-height: 1.5;
     }
-    .container { max-width: 680px; margin: 0 auto; }
+    .container { max-width: 720px; margin: 0 auto; }
     header {
       border-bottom: 1px solid var(--border);
       padding-bottom: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
-    h1 { font-size: 1.35rem; margin: 0 0 4px 0; color: var(--accent); }
-    .subtitle { font-size: 0.85rem; color: var(--muted); }
-    .badge {
-      display: inline-block;
-      background: #0284c733;
-      color: var(--accent);
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      margin-top: 6px;
-      border: 1px solid #38bdf844;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 18px;
-    }
-    h2 { font-size: 1.1rem; margin-top: 0; color: #e2e8f0; }
-    label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; }
-    input[type="text"], input[type="number"] {
+    h1 { font-size: 1.3rem; margin: 0 0 4px 0; color: var(--accent); }
+    .meta-info { font-size: 0.85rem; color: var(--muted); }
+    .search-box {
       width: 100%;
-      padding: 10px 12px;
+      padding: 12px;
       border-radius: 8px;
       border: 1px solid var(--border);
-      background: #0f172a;
+      background: var(--card);
       color: var(--text);
       font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .item-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
       margin-bottom: 12px;
     }
-    button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: var(--accent);
-      color: #0f172a;
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .item-id {
       font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
+      color: var(--accent);
     }
-    button:active { opacity: 0.85; }
-    .result-box {
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 8px;
-      background: #0f172a;
-      border-left: 4px solid var(--accent);
-      font-size: 0.9rem;
-      display: none;
+    .item-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 0 0 6px 0;
+      color: var(--text);
     }
-    .syntax-code {
+    .syntax-block {
       display: block;
       background: #020617;
-      padding: 8px;
+      padding: 8px 10px;
       border-radius: 6px;
       font-family: monospace;
+      font-size: 0.85rem;
       color: #7dd3fc;
       margin: 8px 0;
       overflow-x: auto;
     }
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 12px;
+    .item-detail {
       font-size: 0.9rem;
-    }
-    .checkbox-group label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text);
+      color: #cbd5e1;
       margin: 0;
     }
     footer {
@@ -115,183 +89,116 @@
       font-size: 0.75rem;
       color: var(--muted);
       margin-top: 24px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🧠 Sistema Cognitivo LLM</h1>
-      <div class="subtitle">Núcleo Aislado de Mínima Acción (δ ∫ e^(i/ħ S) Dx = 0)</div>
-      <div id="estado-conexion" class="badge">🔄 Conectando con base aislada...</div>
+      <h1 id="titulo-proyecto">base_cognitiva_tokenizada</h1>
+      <div id="estado-carga" class="meta-info">Cargando datos desde GitHub...</div>
     </header>
 
-    <!-- MÓDULO 1: BUSCADOR DE MÍNIMA ACCIÓN -->
-    <section class="card">
-      <h2>1. Consulta de Conceptos Tokenizados (Sistema 1)</h2>
-      <label for="input-consulta">Escribe tu consulta (ej. "De Morgan 1", "simbolo $", "RTCFR"):</label>
-      <input type="text" id="input-consulta" placeholder="Ingresa palabras clave o símbolos (#, $, [], &)...">
-      <button onclick="ejecutarConsulta()">🔎 Evaluar Mínima Acción (δS → 0)</button>
-      <div id="resultado-consulta" class="result-box"></div>
-    </section>
+    <!-- Filtro de texto directo sobre los registros del JSON -->
+    <input
+      type="text"
+      id="filtro-texto"
+      class="search-box"
+      placeholder="Filtrar por ID, tipo, nombre, sintaxis o detalle..."
+      oninput="filtrarRegistros()"
+    >
 
-    <!-- MÓDULO 2: EVALUADOR DE CONSENSO DE LA SOCIEDAD (50% + 2) -->
-    <section class="card">
-      <h2>2. Evaluador Legislativo (Quórum 50% + 2 + CEO)</h2>
-      <label for="rep-total">Total representantes generales activos:</label>
-      <input type="number" id="rep-total" value="4" min="0">
-
-      <label for="rep-favor">Votos a favor en consejo general:</label>
-      <input type="number" id="rep-favor" value="3" min="0">
-
-      <label for="delta-s">Variación de costo computacional (δS &le; 0 es favorable):</label>
-      <input type="number" id="delta-s" value="-0.15" step="0.05">
-
-      <div class="checkbox-group">
-        <label><input type="checkbox" id="voto-operativo" checked> +1 Voto Representante Operativo</label>
-        <label><input type="checkbox" id="voto-funcional" checked> +1 Voto Representante Funcional</label>
-        <label><input type="checkbox" id="voto-ceo" checked> +1 Ratificación Ejecutiva (CEO)</label>
-      </div>
-
-      <button onclick="evaluarConsenso()">⚖️ Calcular Veredicto de Sociedad</button>
-      <div id="resultado-consenso" class="result-box"></div>
-    </section>
+    <!-- Contenedor donde se renderizan los registros tal como están en el JSON -->
+    <main id="lista-registros"></main>
 
     <footer>
-      Autor: Victor Jose Vazquez Preciado | Todos los derechos reservados.<br>
-      Ejecución 100% local en navegador (Cero costo de servidor).
+      Autor: Victor Jose Vazquez Preciado | Todos los derechos reservados.
     </footer>
   </div>
 
   <script>
     /* =========================================================================
-       PARÁMETROS AJUSTABLES DEL SISTEMA
+       1. PARÁMETRO DE CONEXIÓN AL REPOSITORIO
        ========================================================================= */
     const URL_JSON_GITHUB = "https://raw.githubusercontent.com/victorv280598-hash/base_cognitiva_tokenizada/main/base_cognitiva_tokenizada.json";
-    const UMBRAL_ENTROPIA = 0.65;
-    const H_BARRA = 1.0;
-    const PATRON_TOKENS = /[\w-]+|[#$&\[\]]/g;
 
-    let baseConceptos = {};
+    // Almacén en memoria de los registros leídos del JSON
+    let registrosOriginales = [];
 
     /* =========================================================================
-       CARGA INICIAL DE LA BASE AISLADA DESDE GITHUB
+       2. LECTURA DIRECTA DEL ARCHIVO JSON
        ========================================================================= */
-    async function inicializarSistema() {
-      const badge = document.getElementById("estado-conexion");
+    async function cargarDatos() {
+      const estado = document.getElementById("estado-carga");
       try {
         const respuesta = await fetch(URL_JSON_GITHUB);
-        if (!respuesta.ok) throw new Error("HTTP " + respuesta.status);
+        if (!respuesta.ok) throw new Error("Error HTTP " + respuesta.status);
+
         const datos = await respuesta.json();
-        baseConceptos = datos.conceptos_aislados || {};
-        const total = Object.keys(baseConceptos).length;
-        badge.textContent = `✅ Base activa: ${total} conceptos aislados cargados`;
-        badge.style.color = "#22c55e";
+        const conceptos = datos.conceptos_aislados || {};
+
+        // Convertimos el objeto JSON en una lista ordenada de registros sin alterar sus campos
+        registrosOriginales = Object.entries(conceptos).map(([id, contenido]) => ({
+          id: id,
+          tipo: contenido.tipo || "",
+          nombre: contenido.nombre || "",
+          sintaxis: contenido.sintaxis || "",
+          detalle: contenido.detalle || ""
+        }));
+
+        estado.textContent = `Registros cargados: ${registrosOriginales.length}`;
+        renderizarRegistros(registrosOriginales);
       } catch (error) {
-        badge.textContent = "⚠️ Error al leer JSON (verifica que el repo sea público)";
-        badge.style.color = "#ef4444";
+        estado.textContent = "No se pudo cargar base_cognitiva_tokenizada.json. Verifica que el repositorio sea público.";
       }
     }
 
     /* =========================================================================
-       LÓGICA 1: TOKENIZACIÓN, INTERSECCIÓN (A ∩ B) Y MÍNIMA ACCIÓN
+       3. RENDERIZADO Y FILTRO DE TEXTO SIMPLE
        ========================================================================= */
-    function ejecutarConsulta() {
-      const texto = document.getElementById("input-consulta").value.trim();
-      const caja = document.getElementById("resultado-consulta");
-      caja.style.display = "block";
+    function renderizarRegistros(lista) {
+      const contenedor = document.getElementById("lista-registros");
 
-      // Control Inhibitorio
-      const tokensExtraidos = texto.toLowerCase().match(PATRON_TOKENS);
-      if (!tokensExtraidos) {
-        caja.style.borderLeftColor = "var(--danger)";
-        caja.innerHTML = "<strong>🛑 INHIBIDO:</strong> Entrada vacía o sin tokens válidos.";
+      if (lista.length === 0) {
+        contenedor.innerHTML = '<div class="meta-info">No hay registros que coincidan con el filtro.</div>';
         return;
       }
 
-      const tokensUsuario = new Set(tokensExtraidos);
-      let candidatos = [];
+      contenedor.innerHTML = lista.map(item => `
+        <article class="item-card">
+          <div class="item-header">
+            <span class="item-id">${item.id}</span>
+            <span>${item.tipo}</span>
+          </div>
+          <h2 class="item-title">${item.nombre}</h2>
+          <code class="syntax-block">${item.sintaxis}</code>
+          <p class="item-detail">${item.detalle}</p>
+        </article>
+      `).join("");
+    }
 
-      // Intersección A ∩ B contra conceptos aislados
-      for (const [id, info] of Object.entries(baseConceptos)) {
-        const tokensConcepto = new Set(info.metricas_tokens.tokens_unicos);
-        let coincidencias = 0;
-        tokensUsuario.forEach(t => { if (tokensConcepto.has(t)) coincidencias++; });
-
-        if (coincidencias > 0) {
-          const relevancia = coincidencias / tokensUsuario.size;
-          const entropia = Number((1.0 - relevancia).toFixed(4));
-          const costo = info.metricas_tokens.cantidad_total;
-          const accionS = Number((costo * (1.0 + entropia)).toFixed(4));
-          const faseReal = Number(Math.cos(accionS / H_BARRA).toFixed(4));
-
-          candidatos.push({
-            id,
-            nombre: info.nombre,
-            tipo: info.tipo,
-            sintaxis: info.sintaxis,
-            detalle: info.detalle,
-            entropia,
-            accionS,
-            faseReal
-          });
-        }
-      }
-
-      if (candidatos.length === 0) {
-        caja.style.borderLeftColor = "var(--warning)";
-        caja.innerHTML = "<strong>⚡ DETENIDO_AHORRO:</strong> Concepto no registrado en memoria aislada. Cero gasto adicional.";
+    function filtrarRegistros() {
+      const termino = document.getElementById("filtro-texto").value.toLowerCase().trim();
+      if (!termino) {
+        renderizarRegistros(registrosOriginales);
         return;
       }
 
-      // Ordenar por menor Acción S (Principio de Mínima Acción)
-      candidatos.sort((a, b) => a.accionS - b.accionS);
-      const ganador = candidatos[0];
-      const optimo = ganador.entropia <= UMBRAL_ENTROPIA;
+      const filtrados = registrosOriginales.filter(item =>
+        item.id.toLowerCase().includes(termino) ||
+        item.tipo.toLowerCase().includes(termino) ||
+        item.nombre.toLowerCase().includes(termino) ||
+        item.sintaxis.toLowerCase().includes(termino) ||
+        item.detalle.toLowerCase().includes(termino)
+      );
 
-      caja.style.borderLeftColor = optimo ? "var(--success)" : "var(--warning)";
-      caja.innerHTML = `
-        <strong>📌 Estado:</strong> ${optimo ? "SISTEMA_1_OPTIMO" : "SISTEMA_1_BAJA_COINCIDENCIA"}<br>
-        <strong>🆔 Concepto:</strong> [${ganador.id}] ${ganador.nombre} (${ganador.tipo})<br>
-        <strong>⚡ Métricas:</strong> Entropía H = ${ganador.entropia} | Acción S = ${ganador.accionS} | Fase = ${ganador.faseReal}
-        <code class="syntax-code">${ganador.sintaxis}</code>
-        <strong>📖 Detalle:</strong> ${ganador.detalle}
-      `;
+      renderizarRegistros(filtrados);
     }
 
-    /* =========================================================================
-       LÓGICA 2: EVALUADOR LEGISLATIVO DE CONSENSO (50% + 2 + CEO)
-       ========================================================================= */
-    function evaluarConsenso() {
-      const totalGen = parseInt(document.getElementById("rep-total").value) || 0;
-      const favorGen = parseInt(document.getElementById("rep-favor").value) || 0;
-      const deltaS = parseFloat(document.getElementById("delta-s").value) || 0;
-
-      const vOp = document.getElementById("voto-operativo").checked;
-      const vFun = document.getElementById("voto-funcional").checked;
-      const vCeo = document.getElementById("voto-ceo").checked;
-
-      const porcentaje = totalGen <= 0 ? 1.0 : (favorGen / totalGen);
-      const cumpleMayoria = porcentaje > 0.50;
-      const impactoFavorable = deltaS <= 0.0;
-      const aprobada = cumpleMayoria && vOp && vFun && vCeo && impactoFavorable;
-
-      const caja = document.getElementById("resultado-consenso");
-      caja.style.display = "block";
-      caja.style.borderLeftColor = aprobada ? "var(--success)" : "var(--danger)";
-
-      caja.innerHTML = `
-        <strong>⚖️ Veredicto:</strong> ${aprobada ? "✅ APROBADA_PARA_MAIN" : "❌ RECHAZADA_O_EN_REVISION"}<br>
-        • Consejo General: ${(porcentaje * 100).toFixed(1)}% (${cumpleMayoria ? "Cumple >50%" : "Insuficiente"})<br>
-        • Pilar Operativo: ${vOp ? "Aprobado (+1)" : "Falta voto"}<br>
-        • Pilar Funcional: ${vFun ? "Aprobado (+1)" : "Falta voto"}<br>
-        • Ratificación CEO: ${vCeo ? "Aprobado" : "Pendiente"}<br>
-        • Impacto Estructural (δS = ${deltaS}): ${impactoFavorable ? "Favorable (≤ 0)" : "Desfavorable (> 0)"}
-      `;
-    }
-
-    // Arrancar automáticamente al abrir la página
-    inicializarSistema();
+    // Iniciar carga al abrir la página
+    cargarDatos();
   </script>
 </body>
 </html>
